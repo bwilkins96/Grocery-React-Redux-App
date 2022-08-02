@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { removeFromCart } from '../../store/cart';
+import { removeFromCart, updateCartCount } from '../../store/cart';
 import { useDispatch } from 'react-redux';
 
 function CartItem({ item }) {
@@ -16,15 +16,19 @@ function CartItem({ item }) {
       <div className="cart-item-menu">
         <input
           type="number"
+          onChange ={(e) => {
+            dispatch(updateCartCount(item.id, e.target.value)) }}
           value={count}
         />
         <button
           className="cart-item-button"
+          onClick={() => { dispatch(updateCartCount(item.id, item.count + 1)) }}
         >
           +
         </button>
         <button
           className="cart-item-button"
+          onClick={() => { dispatch(updateCartCount(item.id, item.count - 1)) }}
         >
           -
         </button>
