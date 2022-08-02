@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/cart';
 import { likeProduce } from '../../store/produce';
 
-function ProduceDetails({ produce }) {
+function ProduceDetails({ produce, setShowCart }) {
   const cartItem = {};
   const dispatch = useDispatch();
   const [updater, setUpdater] = useState(false);
@@ -25,7 +25,10 @@ function ProduceDetails({ produce }) {
         </button>
         <button
           className={"plus-button" + (cartItem ? " selected" : "")}
-          onClick={(e) => {dispatch(addToCart(produce.id))}}
+          onClick={(e) => {
+            setShowCart(true);
+            dispatch(addToCart(produce.id))}
+          }
         >
           <i className="fas fa-plus" />
         </button>
