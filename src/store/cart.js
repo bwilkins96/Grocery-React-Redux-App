@@ -25,6 +25,13 @@ export const updateCartCount = (produceId, newCount) => {
     }
 }
 
+export const purchaseFromCart = () => {
+    return {
+        type: EMPTY,
+        payload: 'none :)'
+    }
+}
+
 const cartReducer = (state = {}, action) => {
     if (action.newCount <= 0) {action.type = REMOVE}
     if ((action.type === ADD) && (state[action.produceId]) && (state[action.produceId].count >= 1)) {
@@ -52,6 +59,8 @@ const cartReducer = (state = {}, action) => {
                 count: action.newCount
             }
             return newStateC;
+        case EMPTY:
+            return {};
         default:
             return state;
     }
