@@ -1,8 +1,16 @@
 const ADD = 'cart/ADD';
+const REMOVE = 'cart/REMOVE';
 
 export const addToCart = (produceId) => {
     return {
         type: ADD,
+        produceId: produceId
+    }
+}
+
+export const removeFromCart = (produceId) => {
+    return {
+        type: REMOVE,
         produceId: produceId
     }
 }
@@ -16,6 +24,10 @@ const cartReducer = (state = {}, action) => {
                 count: 1
             }
             return newState;
+        case REMOVE:
+            let newStateB = {...state};
+            delete newStateB[action.produceId];
+            return newStateB;
         default:
             return state;
     }
