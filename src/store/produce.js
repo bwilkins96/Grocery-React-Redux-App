@@ -17,6 +17,8 @@ export const likeProduce = (id) => {
     }
 }
 
+export const getAllProduce = (state) => Object.values(state.produce);
+
 const produceReducer = (state = {}, action) => {
     switch (action.type) {
         case POPULATE:
@@ -27,7 +29,8 @@ const produceReducer = (state = {}, action) => {
             return { ...state, ...produceObj }
         case LIKE:
             let newState = {...state};
-            newState[action.produceId].liked = !newState[action.produceId].liked
+            newState[action.produceId].liked = !newState[action.produceId].liked;
+            return newState;
         default:
             return state;
     }

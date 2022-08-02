@@ -32,6 +32,13 @@ export const purchaseFromCart = () => {
     }
 }
 
+export const getCartItems = (state) => {
+    return {
+        cart: state.cart,
+        produce: state.produce
+    }
+}
+
 const cartReducer = (state = {}, action) => {
     if (action.newCount <= 0) {action.type = REMOVE}
     if ((action.type === ADD) && (state[action.produceId]) && (state[action.produceId].count >= 1)) {

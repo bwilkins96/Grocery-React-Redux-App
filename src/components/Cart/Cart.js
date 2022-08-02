@@ -1,13 +1,12 @@
 import CartItem from './CartItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { purchaseFromCart } from '../../store/cart';
+import { purchaseFromCart, getCartItems } from '../../store/cart';
 import './Cart.css';
 
 function Cart() {
   const dispatch = useDispatch();
 
-  const cart = useSelector(state => state.cart);
-  const produce = useSelector(state => state.produce);
+  const { cart, produce } = useSelector(getCartItems)
 
   const cartItems = Object.values(cart)
     .map(item => {
